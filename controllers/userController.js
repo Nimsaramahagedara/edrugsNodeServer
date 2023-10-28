@@ -78,3 +78,24 @@ export const getUser = async (req, res) => {
     }
 }
 
+//GET USER
+export const getAllUsers = async (req, res) => {
+    
+    
+    try {
+      //  const _id = getId(token);
+        const isExist = await UserModel.find();
+
+        //CHECH IS ACCOUNT IS EXIST OR NOT
+        if (!isExist) {
+            throw Error('No Users Exist');
+        }
+
+        //SEND THE TOKEN
+        res.status(200).json(isExist);
+    } catch (error) {
+        //console.log(error);
+        res.status(401).json({message:error.message});
+    }
+}
+

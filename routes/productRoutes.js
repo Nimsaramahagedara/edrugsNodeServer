@@ -12,7 +12,7 @@ productRouter.get('/', getAllProducts);
 //GET ALL PRODUCTS BELONGS TO PHARMACY
 productRouter.get('/', getAllProduct);
 productRouter.delete('/:id', deleteProduct);
-productRouter.get('/:keyword', searchProduct);
+productRouter.get('/search/:keyword', searchProduct);
 
 
 

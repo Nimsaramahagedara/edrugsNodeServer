@@ -32,7 +32,7 @@ export const registerUser = async (req, res) => {
 //LOGIN USER
 export const loginUser = async (req, res) => {
     const { email, password } = req.body;
-
+    console.log(email, password);
     try {
         const isExist = await UserModel.findOne({ email });
 

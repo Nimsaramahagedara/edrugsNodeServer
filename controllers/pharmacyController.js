@@ -1,8 +1,7 @@
-
-import UserModel from "../model/userModel.js";
+import pharmacyModel from "../model/pharmacyModel.js";
 import { isValid } from "../util/validator.js";
 //REGISTER USER
-export const registerUser = async (req, res) => {
+export const registerPharmacy = async (req, res) => {
     const data = req.body;
 
     try {
@@ -12,11 +11,11 @@ export const registerUser = async (req, res) => {
             throw Error(error)
         }
 
-        const isExist = await UserModel.findOne({email: data.email });
+        const isExist = await pharmacyModel.findOne({email: data.email });
         if (isExist) {
             throw Error('Account Already Exist !')
         } else {
-            const result = await UserModel.create(data);
+            const result = await pharmacyModel.create(data);
             if (result) {
                 res.status(200).json({ message: 'Registration Successfull' })
             }
@@ -30,11 +29,11 @@ export const registerUser = async (req, res) => {
 }
 
 //LOGIN USER
-export const loginUser = async (req, res) => {
+export const loginPharmacy = async (req, res) => {
     const { email, password } = req.body;
 
     try {
-        const isExist = await UserModel.findOne({ email });
+        const isExist = await pharmacyModel.findOne({ email });
 
         //CHECH IS ACCOUNT IS EXIST OR NOT
         if (!isExist) {
@@ -63,7 +62,7 @@ export const getUser = async (req, res) => {
     
     try {
       //  const _id = getId(token);
-        const isExist = await UserModel.findById(createdBy);
+        const isExist = await pharmacyModel.findById(createdBy);
 
         //CHECH IS ACCOUNT IS EXIST OR NOT
         if (!isExist) {

@@ -54,19 +54,16 @@ export const loginPharmacy = async (req, res) => {
     }
 }
 
-//GET USER
-export const getUser = async (req, res) => {
-    const { createdBy } = req.body;
-    console.log(createdBy);
-    
-    
+//GET Pharmacy ALL
+export const getPharmacy = async (req, res) => {
+      
     try {
       //  const _id = getId(token);
-        const isExist = await pharmacyModel.findById(createdBy);
+        const isExist = await pharmacyModel.find();
 
         //CHECH IS ACCOUNT IS EXIST OR NOT
         if (!isExist) {
-            throw Error('Account Not Exist');
+            throw Error('No Pharmacy Available');
         }
 
         //SEND THE TOKEN
@@ -76,4 +73,25 @@ export const getUser = async (req, res) => {
         res.status(401).json({message:error.message});
     }
 }
+
+//GET PHARMACY BY ID
+export const getPharmacyById = async (req, res) => {
+      const {id} = req.params
+    try {
+      //  const _id = getId(token);
+        const isExist = await pharmacyModel.findById(id);
+
+        //CHECH IS ACCOUNT IS EXIST OR NOT
+        if (!isExist) {
+            throw Error('No Pharmacy Available');
+        }
+
+        //SEND THE TOKEN
+        res.status(200).json(isExist);
+    } catch (error) {
+        //console.log(error);
+        res.status(401).json({message:error.message});
+    }
+}
+
 

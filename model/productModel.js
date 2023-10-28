@@ -7,7 +7,8 @@ const productSchema =new mongoose.Schema({
     },
     pharmacy:{
         type: mongoose.Schema.Types.ObjectId,
-        ref:'Pharmacy'
+        ref:'Pharmacy',
+        default: '653c970911295301a3f614bb'
     },
     image:{
         type:String,
